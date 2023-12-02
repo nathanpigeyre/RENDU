@@ -60,13 +60,10 @@ class MainWindow(QMainWindow):
         self.connect_button.clicked.connect(self.connect_to_server)
 
     def connect_to_server(self):
-        try:
-            self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.server_socket.connect(("127.0.0.1", 10000))
-            QMessageBox.information(self, "Connexion réussie", "Connexion établie avec le serveur !")
-        except ConnectionRefusedError:
-            QMessageBox.warning(self, "Erreur de connexion", "Impossible de se connecter au serveur.")
-            self.server_socket = None
+        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server_socket.connect(("127.0.0.1", 10000))
+        QMessageBox.information(self, "Connexion réussie", "Connexion établie avec le serveur !")
+
 
     def __start(self):
         if self.server_socket:
